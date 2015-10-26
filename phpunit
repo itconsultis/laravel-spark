@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+rm -rf bootstrap/cache/compiled.php
+#./artisan optimize --force
+./vendor/phpunit/phpunit/phpunit $*
+
