@@ -30,11 +30,10 @@ class Generator implements GeneratorInterface
      * @param \Illuminate\Contracts\Http\Kernel $app
      * @param ITC\Spark\Http\RequestFactoryInterface $factory
      */
-    public function __construct(HttpKernel $app, RequestFactory $requests, Iterator $urls)
+    public function __construct(HttpKernel $app, RequestFactory $requests)
     {
         $this->app = $app;
         $this->requests = $requests;
-        $this->urls = $urls;
     }
 
     /**
@@ -68,11 +67,11 @@ class Generator implements GeneratorInterface
      * @param void
      * @return void
      */
-    public function generate()
+    public function generate(Iterator $urls)
     {
         $paths = [];
 
-        foreach ($this->urls as $url)
+        foreach ($urls as $url)
         {
             $html = $this->render($url);
             $paths[] = $this->store($url, $html);

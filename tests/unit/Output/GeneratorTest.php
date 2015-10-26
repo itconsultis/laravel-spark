@@ -29,7 +29,7 @@ class GeneratorTest extends TestCase
         // fake storage interface
         $this->storage = Mockery::mock(StorageInterface::class);
 
-        $this->generator = new Generator($this->kernel, $this->requests, $this->urls);
+        $this->generator = new Generator($this->kernel, $this->requests);
         $this->generator->setStorage($this->storage); 
     }
 
@@ -62,7 +62,7 @@ class GeneratorTest extends TestCase
         $this->kernel->shouldReceive('handle')->withArgs([$request, Mockery::any(), Mockery::any()])->andReturn($response);
         $this->storage->shouldReceive('put')->withArgs([$expected_output_path, $html]);
 
-        $this->generator->generate();
+        $this->generator->generate($this->urls);
     }
 
 }

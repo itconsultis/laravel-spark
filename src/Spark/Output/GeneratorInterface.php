@@ -1,5 +1,6 @@
 <?php namespace ITC\Spark\Output;
 
+use Iterator;
 use Illuminate\Contracts\Filesystem\Filesystem as StorageInterface;
 
 interface GeneratorInterface
@@ -21,5 +22,5 @@ interface GeneratorInterface
      * @param void
      * @return array
      */
-    public function generate();
+    public function generate(Iterator $urls);
 }
