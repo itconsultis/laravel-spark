@@ -7,8 +7,9 @@
  */
 return function($urls, $routes, $app)
 {
-    $urls->append('/cities');
-    $urls->append('/cities/san-francisco');
-    $urls->append('/cities/new-york');
+    foreach ($routes as $route)
+    {
+        $urls->add($route->uri());
+    }
 };
 
