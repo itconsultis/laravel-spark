@@ -6,6 +6,7 @@ use Symfony\Component\HttpKernel\HttpKernelInterface as HttpKernel;
 use Illuminate\Contracts\Filesystem\Filesystem as StorageInterface;
 use ITC\Spark\Exception as SparkException;
 use ITC\Spark\Http\RequestFactoryInterface as RequestFactory;
+use Phine\Path\Path;
 
 class Generator implements GeneratorInterface
 {
@@ -108,14 +109,10 @@ class Generator implements GeneratorInterface
     protected function store($url, $output)
     {
         $url = parse_url($url);
-
-        if (empty($url['path']))
-        {
-            $url['path'] = '';
-        }
+        $prefix = empty($url['path']) ? '' : $url['path'];
 
         // derive the output file path and write to it
-        $path = sprintf('%s/index.html', $url['path']);
+        $path = sprintf('%s/index.html', Path::canonical($prefix));
         $this->getStorage()->put($path, $output);
 
         return $path;
