@@ -28,7 +28,7 @@ class GenerateCommand extends Command
         $generator = $app->make(OutputGenerator::class);
         $generator->setStorage($this->createStorage($app));
 
-        $url = $this->createUrls($app);
+        $urls = $this->createUrls($app);
         $generated_paths = $generator->generate($urls);
 
         $this->info('Generated:');
@@ -74,7 +74,7 @@ class GenerateCommand extends Command
 
         // invoke the enumerator with the url list, router and service container 
         $urls = new ArrayIterator();
-        $router = $app->make('router')->getRoutes()->getIterator();
+        $routes = $app->make('router')->getRoutes()->getIterator();
         $enumerate($urls, $routes, $app);
 
         return $urls;

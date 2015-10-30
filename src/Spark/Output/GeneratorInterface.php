@@ -19,7 +19,7 @@ interface GeneratorInterface
 
     /**
      * Render all generable routes and write output to the filesystem
-     * @param void
+     * @param \Iterator $urls
      * @return array
      */
     public function generate(Iterator $urls);

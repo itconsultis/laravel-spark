@@ -64,7 +64,7 @@ class Generator implements GeneratorInterface
     /**
      * Render all generable routes and write output to the filesystem
      * Satisfies GeneratorInterface#generate
-     * @param void
+     * @param \Iterator $urls
      * @return void
      */
     public function generate(Iterator $urls)
