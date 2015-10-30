@@ -109,7 +109,7 @@ class Generator implements GeneratorInterface
     protected function store($url, $output)
     {
         $url = parse_url($url);
-        $prefix = empty($url['path']) ? '' : $url['path'];
+        $prefix = empty($url['path']) || $url['path'] === '/' ? '' : $url['path'];
 
         // derive the output file path and write to it
         $path = sprintf('%s/index.html', Path::canonical($prefix));
