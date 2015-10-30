@@ -111,25 +111,11 @@ class Generator implements GeneratorInterface
 
         if (empty($url['path']))
         {
-            $url['path'] = '/index';
+            $url['path'] = '';
         }
 
-        // derive a filename from the request path
-        $path = $url['path'];
-        $tokens = explode('/', $path);
-
-        if (!$last = array_pop($tokens))
-        {
-            $last = 'index';
-        }
-
-        $filename = $last.'.html';
-
-        // reconstruct the path using the derived filename
-        $tokens[] = $filename;
-        $path = implode('/', $tokens);
-
-        // write output to storage at the derived path
+        // derive the output file path and write to it
+        $path = sprintf('%s/index.html', $url['path']);
         $this->getStorage()->put($path, $output);
 
         return $path;
