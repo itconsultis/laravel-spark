@@ -49,7 +49,7 @@ class GeneratorTest extends TestCase
 
     public function test_passes_if_storage_interface_receives_put_call_with_expected_args()
     {
-        $expected_output_path = '/bar/baz.html';
+        $expected_output_path = '/bar/baz/index.html';
         $html = '<h1>Hello world</h1>';
 
         $request = Mockery::mock(Request::class);
