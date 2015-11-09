@@ -9,7 +9,7 @@ return function($urls, $routes, $app)
 {
     foreach ($routes as $route)
     {
-        $urls->add($route->uri());
+        $urls->append($route->uri());
     }
 };
 
