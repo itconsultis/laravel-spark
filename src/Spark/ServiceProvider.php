@@ -30,10 +30,21 @@ class ServiceProvider extends BaseServiceProvider
      */
     public function boot()
     {
-        $resources = realpath(__DIR__.'/resources');
+        $source = realpath(__DIR__.'/../../files');
 
-        $this->publishes([
-            "$resources/config/spark.php" => base_path('config'),
-        ]);
+        $files = [
+            "config/spark.php",
+            "resources/spark/urls.php",
+        ];
+
+        $publishes = [];
+
+        foreach ($files as $relpath)
+        {
+            $abspath = "$source/$relpath";
+            $publishes[$abspath] = base_path($relpath);
+        }
+
+        $this->publishes($publishes);
     }
 }
